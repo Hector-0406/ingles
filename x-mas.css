@@ -1,0 +1,218 @@
+body {
+    background-color: #0d0d1e; /* Deep dark background */
+    color: #00ffcc; /* Main neon color: Cyan */
+    font-family: 'Share Tech Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px; /* Reducido para móvil */
+    box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+.christmas-card {
+    background: rgba(13, 27, 42, 0.8);
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 30px #ff00ff, 0 0 10px #00ffcc;
+    padding: 20px; /* Reducido para móvil */
+    border-radius: 15px;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Glitch Effect for Title --- */
+.glitch {
+    font-size: 1.8em; /* Más pequeño para móvil */
+    font-weight: bold;
+    color: #00ffcc;
+    position: relative;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+/* Las animaciones de glitch se mantienen iguales, pero la fuente es más pequeña */
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 0, 0, 0);
+}
+
+.glitch::before {
+    left: -1px; /* Ajuste más pequeño para la animación de glitch en móvil */
+    text-shadow: 0.5px 0 #ff00ff;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: 1px; /* Ajuste más pequeño para la animación de glitch en móvil */
+    text-shadow: -0.5px 0 #00ffff;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(42px, 9999px, 44px, 0); }
+    10% { clip: rect(10px, 9999px, 12px, 0); }
+    100% { clip: rect(90px, 9999px, 92px, 0); }
+}
+@keyframes glitch-anim-2 {
+    0% { clip: rect(80px, 9999px, 82px, 0); }
+    20% { clip: rect(20px, 9999px, 22px, 0); }
+    100% { clip: rect(50px, 9999px, 52px, 0); }
+}
+
+/* --- Content and Secret Message --- */
+
+.intro-text, .footer-text {
+    line-height: 1.4; /* Espaciado más compacto */
+    margin-bottom: 20px;
+    font-size: 0.9em; /* Texto más legible en pantallas pequeñas */
+}
+
+.vr-image-container {
+    cursor: pointer;
+    margin: 20px auto;
+    border: 3px solid #00ffcc; /* Borde más delgado */
+    box-shadow: 0 0 15px #00ffcc; /* Sombra más sutil */
+    transition: transform 0.3s ease-in-out;
+    display: block; /* Asegura que ocupe su propia línea */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    max-width: 95%; /* Asegura que la imagen no se salga de la pantalla */
+}
+
+.vr-image-container:hover {
+    transform: scale(1.02); /* Menor zoom en hover para móvil */
+    box-shadow: 0 0 20px #00ffff, 0 0 4px #ff00ff;
+}
+
+.vr-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.click-prompt {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 0, 255, 0.9);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    border: 1px solid white;
+    white-space: nowrap;
+}
+
+.secret-message-box {
+    margin-top: 20px;
+    padding: 15px; /* Padding más pequeño */
+    border: 2px dashed #ff00ff;
+    background: rgba(255, 0, 255, 0.1);
+    transition: all 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+.secret-message-box.hidden {
+    opacity: 0;
+    max-height: 0;
+    padding: 0 15px;
+    overflow: hidden;
+}
+
+.secret-message-box.visible {
+    opacity: 1;
+    max-height: 500px;
+    padding: 15px;
+}
+
+.neon-text {
+    color: #ff00ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 4px #ff00ff;
+    font-size: 1.1em; /* Ligeramente más pequeño */
+    margin-bottom: 10px;
+}
+
+/* --- Media Query para pantallas más grandes (Desktop/Tablet) --- */
+@media (min-width: 600px) {
+    body {
+        padding: 20px;
+    }
+    .christmas-card {
+        padding: 40px;
+    }
+    .glitch {
+        font-size: 2.5em; /* Vuelve al tamaño original */
+    }
+    .intro-text, .footer-text {
+        font-size: 1em;
+    }
+    .vr-image-container {
+        max-width: 450px;
+        border: 5px solid #00ffcc;
+    }
+    .vr-image-container:hover {
+        transform: scale(1.05); /* Vuelve al zoom original */
+    }
+    .secret-message-box {
+        padding: 20px;
+    }
+    .secret-message-box.visible {
+        padding: 20px;
+    }
+    .neon-text {
+        font-size: 1.2em;
+    }
+}
+
+/* --- Teleportation Animation (Decorative) - Sin cambios --- */
+.teleport-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.1;
+}
+
+.teleport-animation::before,
+.teleport-animation::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #00ffcc, transparent);
+    animation: scan-line 6s infinite linear;
+}
+
+.teleport-animation::before {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.teleport-animation::after {
+    right: 25%;
+    background: linear-gradient(to top, transparent, #ff00ff, transparent);
+    animation-delay: 3s;
+}
+
+@keyframes scan-line {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
